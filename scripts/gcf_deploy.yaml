@@ -1,0 +1,19 @@
+steps:
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    args:
+      [
+        "gcloud",
+        "functions",
+        "deploy",
+        "${_GCF_NAME}",
+        "--gen2",
+        "--region=${_SERVICE_REGION}",
+        "--source=./src",
+        "--runtime=python310",
+        "--service-account=${_GCF_SERVICE_ACCOUNT}",
+        "--entry-point=send_email",
+        "--allow-unauthenticated",
+        "--trigger-topic=${_PUBSUB_TOPIC}",
+        "--set-env-vars",
+        "GOOGLE_CLOUD_PROJECT=${_PROJECT_ID},SENDGRID_API_KEY=${_SENDGRID_API_KEY},FROM=${_FROM},TO=${_TO}",
+      ]

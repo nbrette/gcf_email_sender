@@ -1,0 +1,12 @@
+# Linters
+pre-commit==2.20.0
+flake8==5.0.4
+flake8-colors==0.1.9
+pylint==2.15.4
+black==22.10.0
+
+# GCF Packages
+Flask==2.3.2
+functions-framework==3.4.0
+sendgrid==6.10.0
+Jinja2==3.1.2

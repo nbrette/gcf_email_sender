@@ -1,0 +1,36 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: Run isort to sort imports
+  - repo: local
+    hooks:
+      - id: black
+        name: Run black
+        language: python
+        minimum_pre_commit_version: 2.9.2
+        require_serial: true
+        entry: black
+        args: [--safe]
+        types_or: [python, pyi]
+      - id: flake8
+        name: Run flake8
+        entry: flake8
+        language: python
+        types: [python]
+      - id: pylint
+        name: Run pylint
+        language: python
+        entry: pylint
+        args: [--rcfile=pylintrc]
+        files: src/\S*
+        types: [python]
+        require_serial: true
